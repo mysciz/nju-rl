@@ -1,0 +1,19 @@
+# 编辑 .gitignore，确保包含以下内容
+cat > .gitignore << 'EOF'
+# Data files
+data/
+*.parquet
+*.pkl
+*.jsonl
+*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Models
+*.pt
+*.pth
+*.pkl
+EOF
