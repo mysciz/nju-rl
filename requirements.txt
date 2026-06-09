@@ -1,0 +1,28 @@
+# 基础依赖
+torch>=2.0.0
+transformers>=4.38.0
+datasets>=2.14.0
+accelerate>=0.27.0
+
+# 视觉模型依赖
+qwen-vl-utils>=0.0.8
+pillow>=10.0.0
+
+# RL训练依赖
+trl>=0.8.0
+peft>=0.9.0
+
+# 数据处理依赖
+numpy>=1.24.0
+pandas>=2.0.0
+tqdm>=4.65.0
+
+# 日志和可视化
+wandb>=0.16.0
+matplotlib>=3.7.0
+
+# 其他工具
+scipy>=1.11.0
+scikit-learn>=1.3.0
+sentencepiece>=0.1.99
+protobuf>=4.24.0

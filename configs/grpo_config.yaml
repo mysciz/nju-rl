@@ -1,0 +1,52 @@
+# GRPO 训练配置文件
+
+# 模型配置
+model_name: "Qwen/Qwen2.5-VL-3B-Instruct"
+
+# LoRA 配置
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: null  # 自动检测
+
+# 训练配置
+learning_rate: 1.0e-5       # GRPO 通常使用比 PPO 更小的学习率
+batch_size: 4               # 每批次问题数
+num_epochs: 3
+max_seq_length: 2048
+max_prompt_length: 1024
+max_response_length: 512
+
+# GRPO 特定配置
+clip_epsilon: 0.2           # GRPO clipping epsilon
+group_size: 4                 # 每个问题的采样数量 (G in DeepSeekMath)
+kl_coef: 0.04               # KL 散度惩罚系数 (通常比 PPO 小)
+
+# GRPO epoch 配置
+grpo_epochs: 2              # 每次采样的 epoch 数
+
+# 优化器配置
+warmup_steps: 100
+weight_decay: 0.01
+gradient_accumulation_steps: 4
+max_grad_norm: 1.0
+
+# 生成配置
+temperature: 0.8
+top_p: 0.9
+top_k: 50
+do_sample: true
+
+# 输出配置
+output_dir: "outputs/grpo"
+save_steps: 500
+logging_steps: 10
+
+# 其他配置
+seed: 42
+
+# Online Filter (Bonus 题目 5a)
+use_online_filter: false
+advantage_var_low: 0.01     # 优势方差下限
+advantage_var_high: 1.0     # 优势方差上限

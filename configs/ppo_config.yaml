@@ -1,0 +1,48 @@
+# PPO 训练配置文件
+
+# 模型配置
+model_name: "Qwen/Qwen2.5-VL-3B-Instruct"
+
+# LoRA 配置
+use_lora: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+target_modules: null  # 自动检测
+
+# 训练配置
+learning_rate: 5.0e-5
+batch_size: 4
+mini_batch_size: 1
+num_epochs: 3
+max_seq_length: 2048
+max_prompt_length: 1024
+max_response_length: 512
+
+# PPO 特定配置
+clip_epsilon: 0.2           # PPO clipping epsilon
+value_clip: 0.2             # Value function clipping
+ppo_epochs: 4               # 每次更新的 PPO epoch 数
+kl_coef: 0.2                # KL 散度惩罚系数
+gamma: 1.0                  # 折扣因子
+lam: 0.95                   # GAE lambda
+
+# 优化器配置
+warmup_steps: 100
+weight_decay: 0.01
+gradient_accumulation_steps: 4
+max_grad_norm: 1.0
+
+# 生成配置
+temperature: 0.7
+top_p: 0.9
+top_k: 50
+do_sample: true
+
+# 输出配置
+output_dir: "outputs/ppo"
+save_steps: 500
+logging_steps: 10
+
+# 其他配置
+seed: 42
