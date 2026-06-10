@@ -56,11 +56,21 @@ export HF_ENDPOINT=https://hf-mirror.com
 运行任意训练脚本时会自动下载/生成数据：
 
 ```bash
-# 生成约 1000 条 Thyme-SFT 数据并转换为 RL 格式
-python train_ppo.py --num_samples 1000
+huggingface-cli download Kwai-Keye/Thyme-SFT data/2round-00000-of-00069.parquet --local-dir ./data 
 ```
 
-### 2. PPO 训练
+### 2.数据可视化
+```bash
+python src/transfer/viewer.py
+```
+
+### 3.数据转换
+从 SFT 轨迹格式数据转换到RL问答格式数据
+
+```bash
+ python src/transfer/data_converter.py --limit 1000 --no-tokenizer
+```
+### 4. PPO 训练
 
 ```bash
 # 使用默认配置
@@ -78,7 +88,7 @@ python train_ppo.py \
     --output_dir outputs/ppo_v1
 ```
 
-### 3. GRPO 训练
+### 5. GRPO 训练
 
 ```bash
 # 使用默认配置
